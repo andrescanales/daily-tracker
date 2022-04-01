@@ -1,6 +1,5 @@
-<h2>New Client</h2>
-<%= form_with(model: @client, local: true) do |f| %>
-  <%#= local: true so we don't save it via Ajax %>
+<h2>New Project</h2>
+<%= form_with(model: @project, local: true) do |f| %>
   <div class="mb-3">
     <%= f.label :name %>
     <%= f.text_field :name, class: "form-control" %>
@@ -10,8 +9,8 @@
     <%= f.text_area :description, class: "form-control" %>
   </div>
   <div class="mb-3">
-    <%= f.label :active, class: "form-check-label" %>
-    <%= f.check_box :status, class: "form-check-input" %>
+    <%= f.label :client_id %>
+    <%= f.collection_select(:client_id, @clients, :id, :name, { prompt: true }, class: "form-select")%>
   </div>
   <div class="mb-3">
     <%= f.submit class: "btn btn-primary" %>

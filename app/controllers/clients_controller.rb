@@ -8,12 +8,13 @@ class ClientsController < ApplicationController
   end
 
   def create
-    # @client = Client.new(params[:name], params[:description], params[:status])
+    @client = Client.create(client_params)
+    render json: @client
   end
 
   private
 
-  def create_params
-    @create_params = params.permit(:name, :description, :status)
+  def client_params
+    params.require(:client).permit(:name, :description, :status)
   end
 end
