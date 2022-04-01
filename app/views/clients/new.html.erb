@@ -1,0 +1,15 @@
+<h1>New client</h1>
+<%= form_with(model: @client) do |form| %>
+  <div>
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+  <div>
+    <%= form.label :description %>
+    <%= form.text_area :description %>
+  </div>
+  <div>
+    <%= form.label :status %>
+    <%= form.check_box :status %>
+  </div>
+<% end %>
