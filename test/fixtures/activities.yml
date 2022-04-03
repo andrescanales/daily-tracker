@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  work_day: 2022-04-02
+  description: MyText
+  start_time: 2022-04-02 21:02:53
+  end_time: 2022-04-02 21:02:53
+  project: one
+  score: one
+  user: one
+
+two:
+  work_day: 2022-04-02
+  description: MyText
+  start_time: 2022-04-02 21:02:53
+  end_time: 2022-04-02 21:02:53
+  project: two
+  score: two
+  user: two

@@ -1,0 +1,19 @@
+<h2>Scores</h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @scores.each do |score| %>
+    <tr>
+      <th scope="row"><%= score.id %></th>
+      <td><%= score.name %></td>
+    </tr>
+    <tr>
+    <% end %>
+  </tbody>
+</table>
+<%= link_to "New", new_score_path, class: "col-1 btn btn-primary" %>

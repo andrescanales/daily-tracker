@@ -1,0 +1,54 @@
+<%= form_with(model: @activity, local: true) do |f| %>
+  <% if @activity.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+        <% post.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="row">
+    <div class="col">
+      <%= f.label :description %>
+      <%= f.text_area :description, class: "form-control" %>
+    </div>
+  </div>
+  <div class="row pt-3">
+    <div class="col">
+      <%= f.label :start_time %>
+      <%= f.time_field :start_time, class: "form-control" %>
+    </div>
+    <div class="col">
+      <%= f.label :end_time %>
+      <%= f.time_field :end_time, class: "form-control" %>
+    </div>
+  </div>
+  <div class="row pt-3">
+    <div class="col">
+      <%= f.label :work_day %>
+      <%= f.date_field :work_day, class: "form-control" %>
+    </div>
+  </div>
+  <div class="row pt-3">
+    <div class="col">
+      <%= f.label :project_id %>
+      <%= f.collection_select :project_id, @projects, :id, :name, { prompt: true }, class: "form-select" %>
+    </div>
+    <div class="col">
+      <%= f.label :score_id %>
+      <%= f.collection_select :score_id, @scores, :id, :name, { prompt: true }, class: "form-select" %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
+    <%= f.hidden_field :user_id, value: current_user.id %>
+    </div>
+  </div>
+  <div class="mb-3 pt-3">
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+<% end %>
