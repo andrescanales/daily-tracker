@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  resources :activities, only: [:index, :new, :create, :edit, :update]
+  resources :activities, only: [:index, :new, :create, :edit, :update] do
+    get "index", on: :collection, action: :index
+  end
   resources :scores, only: [:index, :new, :create]
   devise_for :users
   root to: 'home#index'

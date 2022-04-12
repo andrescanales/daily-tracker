@@ -1,17 +1,18 @@
 <%= javascript_pack_tag 'activities/index'%>
 <h2>Activities</h2>
 <div class="col-2">
-  <select name="filters" id="filters" class="form-select">
-    <option value="current" selected>Current month</option>
-    <option value="all">All months</option>
-  </select>
+  <%= form_with url: activities_path, method: :get do |f| %>
+    <select name="filters" id="filters" class="form-select">
+      <option value="all" selected>All months</option>
+      <option value="current_month">Current month</option>
+    </select>
+  <% end %>
 </div>
 <table class="table">
   <thead>
     <tr>
-      <th scope="col">#</th>
+      <th scope="col">Day</th>
       <th scope="col">Description</th>
-      <th scope="col">Date</th>
       <th scope="col">Start time</th>
       <th scope="col">End time</th>
       <th scope="col">Project</th>
@@ -21,17 +22,16 @@
   </thead>
   <tbody>
     <% @activities.each do |activity| %>
-    <tr>
-      <th scope="row"><%= activity.id %></th>
-      <td><%= activity.description %></td>
-      <td><%= activity.work_day.strftime("%a %d, %b") %></td>
-      <td><%= activity.start_time.strftime("%H:%M") %></td>
-      <td><%= activity.end_time.strftime("%H:%M") %></td>
-      <td><%= activity.project.name %></td>
-      <td><%= activity.score.name.upcase %></td>
-      <td><%= link_to "Edit", edit_activity_path(activity) %></td>
-    </tr>
-    <tr>
+      <% class_name = "table-secondary" if activity.work_day.day.even? %>
+      <tr class="<%= class_name %>">
+        <th scope="row"><%= activity.work_day.strftime("%a %d, %b") %></th>
+        <td><%= activity.description %></td>
+        <td><%= activity.start_time.strftime("%H:%M") %></td>
+        <td><%= activity.end_time.strftime("%H:%M") %></td>
+        <td><%= activity.project.name %></td>
+        <td><%= activity.score.name.upcase %></td>
+        <td><%= link_to "Edit", edit_activity_path(activity) %></td>
+      </tr>
     <% end %>
   </tbody>
 </table>

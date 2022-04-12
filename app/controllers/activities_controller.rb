@@ -3,9 +3,13 @@ class ActivitiesController < ApplicationController
   before_action :get_scores, only: [:new, :edit]
 
   def index
-    # Aca me quede tratando de hacer funcionar lso filtros con js
-    # unless params[:filters][:all]
-    @activities = Activity.all
+    if params[:order].present?
+      filter_params(params).each do |key, val|
+        @activities = Activity.public_send("filter_by_#{val}")
+      end
+    else
+      @activities = Activity.all.order(work_day: 'DESC')
+    end
   end
 
   def new
@@ -23,6 +27,10 @@ class ActivitiesController < ApplicationController
   end
 
   private
+
+  def filter_params(params)
+    params.slice(:order)
+  end
   
   def get_projects
     @projects ||= Project.all
